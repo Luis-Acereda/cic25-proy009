@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import es.cic.curso25.proy009.model.Arbol;
 
 @Repository
-public interface ProyRepository extends JpaRepository<Arbol, Long>{
+public interface ArbolRepository extends JpaRepository<Arbol, Long>{
 
 }

@@ -1,6 +1,9 @@
 package es.cic.curso25.proy009.model;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -16,10 +19,12 @@ public class Arbol {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
-    private List<Rama> ramas;
+    @OneToMany(mappedBy = "arbol",cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE}, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Rama> ramas = new ArrayList<>();
 
     private int edad;
+    private double altura;
     private String tipo;
 
     public Long getId() {
@@ -34,10 +39,22 @@ public class Arbol {
     public void setEdad(int edad) {
         this.edad = edad;
     }
+    public double getAltura() {
+        return altura;
+    }
+    public void setAltura(double altura) {
+        this.altura = altura;
+    }
     public String getTipo() {
         return tipo;
     }
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+    public List<Rama> getRamas() {
+        return ramas;
+    }
+    public void setRamas(List<Rama> ramas) {
+        this.ramas = ramas;
     }    
 }

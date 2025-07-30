@@ -1,5 +1,7 @@
 package es.cic.curso25.proy009.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,7 +16,8 @@ public class Rama {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.REFRESH)
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JsonBackReference
     private Arbol arbol;
 
     private double longitud;
@@ -41,5 +44,5 @@ public class Rama {
 
     public void setLongitud(double longitud) {
         this.longitud = longitud;
-    }
+    }   
 }
