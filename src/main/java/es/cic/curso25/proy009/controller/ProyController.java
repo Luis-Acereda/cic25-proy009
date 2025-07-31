@@ -35,9 +35,9 @@ public class ProyController {
 
     @PostMapping("")
     public Arbol create(@RequestBody Arbol arbol){
-        // if (proyService.getById(arbol.getId()) != null) {
-        //     throw new CreationException();
-        // }
+        if (arbol.getId() != null) {
+            throw new CreationException();
+        }
         return proyService.create(arbol);
     }
 
